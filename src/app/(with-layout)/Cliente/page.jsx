@@ -7,15 +7,11 @@ import Subtitle from '@/components/Subtitle'
 import Tag from '../../../components/Tag'
 import { useRouter } from 'next/navigation';
 
-import { useMask } from '@react-input/mask';
 import { WithAuth } from '@/HOCs/WithAuth'
 
 
 function Home() {
-    const inputRefCard = useMask({ mask: '____ ____ ____ ____', replacement: { _: /\d/ } });
 
-    const inputRefDate = useMask({ mask: '__/__', replacement: { _: /\d/ } });
-    const inputRefCVC = useMask({ mask: '___', replacement: { _: /\d/ } });
     const router = useRouter()
 
 

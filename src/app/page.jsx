@@ -6,7 +6,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import style from './page.module.css'
 import Button from '../components/Button'
-import Input from '@/components/Input'
+import Input from '../components/Input'
 
 import { useRouter } from 'next/navigation';
 
