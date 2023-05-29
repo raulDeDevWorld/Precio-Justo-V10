@@ -1,43 +1,54 @@
 'use client'
 
 
-import React, { useState, useMemo, useContext} from 'react'
+import React, { useState, useMemo, useContext } from 'react'
 
 const UserContext = React.createContext()
 
-export function UserProvider ({ children }) {
+export function UserProvider({ children }) {
 
 	const [user, setUser] = useState(undefined)
 	const [userDB, setUserDB] = useState('')
+	const [success, setSuccess] = useState('')
 
 
-	function setUserProfile (userProfile) {
-		setUser(userProfile)
+
+	const setUserProfile = (data) => {
+		setUser(data)
 	}
-	function setUserData (userDatabase) {
-		setUserDB(userDatabase)
+
+
+	const setUserData = (data) => {
+		setUserDB(data)
 	}
 
-	const value = useMemo(()=>{
+
+	const setUserSuccess = (data) => {
+		setSuccess(data)
+	}
+
+	const value = useMemo(() => {
 		return ({
 			user,
 			userDB,
+			success,
 			setUserProfile,
 			setUserData,
-	
+			setUserSuccess
+
 		})
-	}, [ user, userDB,])
+	}, [user, userDB, success])
 
 	return (
 		<UserContext.Provider value={value} >
-			{ children }
+			{children}
 		</UserContext.Provider>
 	)
-} 
+}
 
-export function useUser () {
+export function useUser() {
 	const context = useContext(UserContext)
-	if(!context){
+	if (!context) {
 		throw new Error('error')
 	}
 	return context

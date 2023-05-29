@@ -17,11 +17,13 @@ const signUpWithEmailAndPassword = async (email, password, setUserProfile) => {
     })
 }
 
-const signInWithEmailAndPassword = async (email, password) => {
+const signInWithEmailAndPassword = async (email, password, setUserSuccess) => {
     const { data, error } = await supabase.auth.signInWithPassword({
         email,
         password,
     })
+    console.log(data)
+    data.user == null && setUserSuccess('AccountNonExist')
 }
 
 const signOut = async (email, password) => {

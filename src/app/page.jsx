@@ -7,6 +7,7 @@ import Link from 'next/link'
 import style from './page.module.css'
 import Button from '../components/Button'
 import Input from '../components/Input'
+import Error from '@/components/Error'
 
 import { useRouter } from 'next/navigation';
 
@@ -19,7 +20,13 @@ export default function Home() {
     e.preventDefault()
     let email = e.target[0].value
     let password = e.target[1].value
-    signInWithEmailAndPassword(email, password)
+    
+
+    email.length !== 0 && password.length  !== 0 ? signInWithEmailAndPassword(email, password, setUserSuccess) : setUserSuccess('Complete')
+
+
+
+    
   }
 
   useEffect(() => {
@@ -27,7 +34,7 @@ export default function Home() {
     if (user !== undefined && user !== null) router.replace('/Cliente')
   }, [user]);
 
-
+console.log(success)
   return (
 
     <div className={style.container}>
@@ -60,6 +67,9 @@ export default function Home() {
           </form>
         </div>
       </main>
+      {success == 'AccountNonExist' && <Error>Cuenta inexistente</Error>}
+      {success == 'Complete' && <Error>Complete el formulario</Error>}
+
 
       {/* {success == false && <Error>ERROR: verifique e intente nuevamente</Error>}
         {success == 'complete' && <Error>Llene todo el formulario</Error>} */}

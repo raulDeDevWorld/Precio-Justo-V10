@@ -6,6 +6,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 import style from '@/app/page.module.css'
 import Button from '@/components/Button'
+import Error from '@/components/Error'
+
 import Input from '@/components/Input'
 import { useRouter } from 'next/navigation';
 
@@ -16,7 +18,7 @@ export default function Home() {
   const { user, userDB, setUserProfile, setUserSuccess, success, setUserData, postsIMG, setUserPostsIMG } = useUser()
   const router = useRouter()
 
-            
+
   const signUpHandler = (e) => {
     e.preventDefault()
     let email = e.target[0].value
@@ -27,10 +29,10 @@ export default function Home() {
   useEffect(() => {
     user == undefined && onAuth(setUserProfile)
     user && router.push('/')
-  }, [user]);
+  }, [user, success]);
 
 
-  console.log(user)
+  console.log(success)
   return (
 
     <div className={style.container}>
@@ -65,8 +67,7 @@ export default function Home() {
         </div>
 
       </main>
-      {/* {success == false && <Error>ERROR: verifique e intente nuevamente</Error>}
-        {success == 'complete' && <Error>Llene todo el formulario</Error>} */}
+      {/*    {success == 'complete' && <Error>Llene todo el formulario</Error>} */}
     </div>
 
   )
