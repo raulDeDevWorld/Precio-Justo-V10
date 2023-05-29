@@ -21,14 +21,16 @@ export default function Home() {
     e.preventDefault()
     let email = e.target[0].value
     let password = e.target[1].value
-    signUpWithEmailAndPassword(email, password)
+    signUpWithEmailAndPassword(email, password, setUserProfile)
   }
 
   useEffect(() => {
-    user == undefined && onAuth(setUserProfile,)
-    if (user) router.replace('/Register')
+    user == undefined && onAuth(setUserProfile)
+    user && router.push('/')
   }, [user]);
 
+
+  console.log(user)
   return (
 
     <div className={style.container}>

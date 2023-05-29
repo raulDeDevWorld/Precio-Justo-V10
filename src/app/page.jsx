@@ -23,8 +23,8 @@ export default function Home() {
   }
 
   useEffect(() => {
-    onAuth(setUserProfile)
-    if (user) router.replace('/Cliente')
+    user === undefined && onAuth(setUserProfile)
+    if (user !== undefined && user !== null) router.replace('/Cliente')
   }, [user]);
 
 
